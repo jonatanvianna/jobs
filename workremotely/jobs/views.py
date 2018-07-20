@@ -15,4 +15,5 @@ def create_job(request):
 
 def list_jobs(request):
     if request.method == 'GET':
-        return render(request, 'jobs/list_jobs.html', {'jobs': Job.objects.all()})
+        return render(request, 'jobs/list_jobs.html',
+            {'jobs': Job.objects.all()})

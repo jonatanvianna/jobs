@@ -8,7 +8,8 @@ class CreateJobTestCase(TestCase):
         client = Client()
         response = client.post(
             reverse('create-new-job'),
-            {'title': 'Ruby Developer', 'description': '...some description...',
+            {'title': 'Ruby Developer',
+             'description': '...some description...',
              'company': 'Galaxy D', 'email': 'job@gd.com'})
 
         self.assertEqual(response.status_code, 200)
