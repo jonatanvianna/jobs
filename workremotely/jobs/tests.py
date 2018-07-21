@@ -21,7 +21,7 @@ class CreateJobTestCase(TestCase):
         self.assertEqual(job.email, 'job@gd.com')
 
 
-class ListAllJobsTestCase(TestCase):
+class ListJobsTestCase(TestCase):
     def test_list_all_jobs(self):
         title = 'Software Developer'
         description = '...some description...'
@@ -32,30 +32,16 @@ class ListAllJobsTestCase(TestCase):
             reverse('create-new-job'),
             {'title': title, 'description': description, 'company': company,
              'email': email})
-
-        html = f"""
-                 <table border="1">
-                   <tbody>
-                     <thead>
-                       <th>Title</th>
-                       <th>Company</th>
-                       <th>Email</th>
-                     </thead>
-                     <tr>
-                       <td>{title}</td>
-                       <td>{company}</td>
-                       <td>{email}</td>
-                     </tr>
-                   </tbody>
-                 </table>"""
+        self.client.post(
+            reverse('create-new-job'),
+            {'title': title, 'description': description, 'company': company,
+             'email': email})
 
         response = self.client.get(reverse('list-jobs'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, text=html, count=1, status_code=200,
-                            html=True)
-
+        self.assertGreaterEqual(response.context['jobs'].count(), 1)
+        
     def test_empty_jobs_list(self):
         response = self.client.get(reverse('list-jobs'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, text="<h3>No jobs to show.</h3>", count=1,
-                            status_code=200, html=True)
+        self.assertEqual(response.context['jobs'].count(), 0)
