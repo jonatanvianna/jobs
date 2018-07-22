@@ -17,7 +17,7 @@ Platform to post and search for jobs
 
 - Python virtual environment with minimum 3.6 version installed
 - Pipenv
-- Django 2.0
+- Django 2.0+
 
 #### How to install
 
