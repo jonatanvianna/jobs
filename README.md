@@ -28,13 +28,17 @@ $ git clone https://github.com/mauricioabreu/jobs.git
 
 $ cd jobs
 
+$ pipenv --python 3.6
+
 $ pipenv shell
 
 $ pipenv install --dev
 ```
 
-Start the database
+Setup the initial database
 ```
+$ cd workremotely
+
 $ python manage.py migrate
 ```
 
@@ -49,7 +53,7 @@ $ python manage.py test
 
 #### How to run
 ```
-$ cd workremotey runserver
+$ cd workremotey
 
 $ python manage.py runserver
 ```
