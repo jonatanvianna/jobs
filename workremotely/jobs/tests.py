@@ -23,24 +23,24 @@ class CreateJobTestCase(TestCase):
 
 class ListJobsTestCase(TestCase):
     def test_list_all_jobs(self):
-        title = 'Software Developer'
-        description = '...some description...'
-        company = 'Azion Technologies'
-        email = 'job@azion.com'
+        self.client.post(
+            reverse('create-new-job'),
+            {'title': 'Software Developer',
+             'description': '...some description...',
+             'company': 'Azion Technologies',
+             'email': 'job@azion.com'})
 
         self.client.post(
             reverse('create-new-job'),
-            {'title': title, 'description': description, 'company': company,
-             'email': email})
-        self.client.post(
-            reverse('create-new-job'),
-            {'title': title, 'description': description, 'company': company,
-             'email': email})
+            {'title': 'Infrastructure Anlist',
+             'description': '...some description...',
+             'company': 'Terra Networks',
+             'email': 'job@terra.com'})
 
         response = self.client.get(reverse('list-jobs'))
         self.assertEqual(response.status_code, 200)
         self.assertGreaterEqual(response.context['jobs'].count(), 1)
-        
+
     def test_empty_jobs_list(self):
         response = self.client.get(reverse('list-jobs'))
         self.assertEqual(response.status_code, 200)
