@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>List Jobs</title>
+</head>
+<body>
+  {% if jobs %}
+     <table border="1">
+       <tbody>
+         <thead>
+           <th>Title</th>
+           <th>Company</th>
+           <th>Email</th>
+         </thead>
+       {% for job in jobs %}
+         <tr>
+           <td>{{ job.title }}</td>
+           <td>{{ job.company }}</td>
+           <td>{{ job.email }}</td>
+         </tr>
+       {% endfor %}
+       </tbody>
+     </table>
+  {% else %}
+    <h3>No jobs to show.</h3>
+  {% endif %}
+</body>
+</html>
