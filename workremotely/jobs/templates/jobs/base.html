@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
+<body>
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+   <div class="container is-fluid">
+      <div class="navbar-brand">
+        <a href="{% url 'list-jobs' %}" class="navbar-item">
+            <div>List Jobs</div>
+         </a>
+         <a href="{% url 'create-job' %}" class="navbar-item">
+            <div>Create Job</div>
+         </a>
+      </div>
+   </div>
+</nav>
+
+  <section class="section">
+    <div class="container">
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <div id="message" class="notification is-success">
+            <div class="delete"></div>
+            {{ message }}
+          </div>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+          <div id="message" class="notification is-warning">
+            <div class="delete"></div>
+            {{ message }}
+          </div>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div id="message" class="notification is-danger">
+            <div class="delete"></div>
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% block content %}
+      {% endblock %}
+    </div>
+  </section>
+  {% load static %}
+  <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+  <script src="{% static 'js/bulma.js' %}"></script>
+</body>
+</html>
+

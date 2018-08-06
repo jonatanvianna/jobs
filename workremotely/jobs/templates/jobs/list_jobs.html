@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <title>List Jobs</title>
-</head>
-<body>
+{% extends 'jobs/base.html'%}
+{% block content %}
   {% if jobs %}
-     <table border="1">
-       <tbody>
-         <thead>
-           <th>Title</th>
-           <th>Company</th>
-           <th>Email</th>
-         </thead>
-       {% for job in jobs %}
-         <tr>
-           <td>{{ job.title }}</td>
-           <td>{{ job.company }}</td>
-           <td>{{ job.email }}</td>
-         </tr>
-       {% endfor %}
-       </tbody>
-     </table>
+    <div class="columns">
+      <div class="column is-one-quarter"><h5 class="title is-5">Title</h5></div>
+      <div class="column"><h5 class="title is-5">Company</h5></div>
+      <div class="column is-one-quarter"><h5 class="title is-5">Email</h5></div>
+    </div>
+    {% for job in jobs %}
+        <div class="box">
+          <div class="columns">
+            <div class="column is-one-quarter">{{ job.title }}</div>
+            <div class="column">{{ job.company }}</div>
+            <div class="column is-one-quarter">
+              <div class="columns">
+                <div class="column">{{ job.email }}</div>
+                <div class="column is-one-quarter">
+                  <a href="{% url 'detail-job' job.id %}">Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
   {% else %}
-    <h3>No jobs to show.</h3>
+    <h3 class="title is-3">No jobs to show.</h3>
   {% endif %}
-</body>
-</html>
+{% endblock %}

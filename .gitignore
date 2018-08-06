@@ -1,6 +1,7 @@
 # pycharm
 .idea/
-
+jobs.sublime-workspace
+jobs.sublime-project
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
