@@ -1,7 +1,18 @@
 {% extends 'jobs/base.html' %}
 {% block content %}
+<h3 class="title is-3">Create Job</h3>
 <form method="post">{% csrf_token %}
-   {{ form.as_p }}
-   <input type="submit" value="Create"></input>
+  {% for field in form %}
+    <div class="field">
+      <label class="label">{{ field.label }}</label>
+      <div class="control">
+        {{ field }}
+      </div>
+      <p class="help">{{ field.help_text }}</p>
+    </div>
+  {% endfor %}
+  <div class="control">
+    <button class="button is-primary">Create</button>
+  </div>
 </form>
 {% endblock %}
