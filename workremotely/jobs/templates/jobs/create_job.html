@@ -8,6 +8,9 @@
       <div class="control">
         {{ field }}
       </div>
+      {% for error in field.errors %}
+        <p class="help is-danger">{{ error }}</p>
+      {% endfor %}
       <p class="help">{{ field.help_text }}</p>
     </div>
   {% endfor %}
