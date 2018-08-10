@@ -45,5 +45,6 @@ def update_job(request, pk):
             job_form.save()
             messages.success(request, message="Job updated successfully.")
             return redirect(reverse("list-jobs"))
-        messages.error(request, message="Error in the form.")
+        error_message = "Errors found. Please fill the form correctly."
+        messages.error(request, message=error_message)
         return render(request, template_name, context)
