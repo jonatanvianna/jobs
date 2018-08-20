@@ -7,4 +7,21 @@
     <p>{{ job.email }}</p>
   </div>
     <a href="{% url 'update-job' job.id %}" class="button">Update</a>
+  <button class="button is-danger" onclick="showDeleteModal()">Delete</button>
+  <div class="modal" id="delete-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-danger">Delete</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
   {% endblock %}
