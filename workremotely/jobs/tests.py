@@ -82,3 +82,22 @@ class UpdateJobTestCase(TestCase):
         self.assertEqual(self.job.description, data["description"])
         self.assertEqual(self.job.company, data["company"])
         self.assertEqual(self.job.email, data["email"])
+
+
+class DeleteJobTestCase(TestCase):
+    def setUp(self):
+        self.job = Job.objects.create(
+            title="ABAP Developer",
+            description="...some description...",
+            company="SAP inc.",
+            email="jobs@sap.com",
+        )
+
+    def test_delete_job(self):
+        url = reverse("delete-job", args=[self.job.id])
+
+        response = self.client.post(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        # wow
+        # https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises
+        self.assertRaises(Job.DoesNotExist, Job.objects.get, pk=self.job.id)

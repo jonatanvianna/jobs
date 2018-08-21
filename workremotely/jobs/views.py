@@ -52,6 +52,10 @@ def update_job(request, pk):
 
 def delete_job(request, pk):
     job = get_object_or_404(Job, pk=pk)
+    if request.method == "GET":
+        message = "Job not deleted. Please review the operation."
+        messages.warning(request, message)
+        return redirect(reverse("list-jobs"))
     if request.method == "POST":
         job.delete()
         messages.success(request, "Job deleted successfully.")
