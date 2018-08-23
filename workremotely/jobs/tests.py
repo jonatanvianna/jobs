@@ -96,8 +96,9 @@ class DeleteJobTestCase(TestCase):
     def test_delete_job(self):
         url = reverse("delete-job", args=[self.job.id])
 
-        response = self.client.post(url, follow=True)
-        self.assertEqual(response.status_code, 200)
-        # wow
-        # https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises
-        self.assertRaises(Job.DoesNotExist, Job.objects.get, pk=self.job.id)
+        response_post = self.client.post(url, follow=True)
+        self.assertEqual(response_post.status_code, 200)
+        
+        url_detail= reverse("delete-job", args=[self.job.id])
+        respose_get = self.client.get(url_detail)
+        self.assertEqual(respose_get.status_code, 404)
