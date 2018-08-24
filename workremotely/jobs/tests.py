@@ -101,4 +101,4 @@ class DeleteJobTestCase(TestCase):
         
         url_detail= reverse("delete-job", args=[self.job.id])
         response_get = self.client.get(url_detail)
-        self.assertEqual(response_get.status_code, 404)
+        self.assertEqual(respose_get.status_code, 404)
