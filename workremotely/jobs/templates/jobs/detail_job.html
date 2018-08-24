@@ -7,4 +7,5 @@
     <p>{{ job.email }}</p>
   </div>
     <a href="{% url 'update-job' job.id %}" class="button">Update</a>
+  <a href="{% url 'delete-job' job.id %}" class="button is-danger">Delete</a>
   {% endblock %}
