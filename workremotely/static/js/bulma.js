@@ -9,12 +9,3 @@ $(document).ready(function () {
         $('#message.notification').fadeOut();
     });    
 });
-
-//show delete modal
-function showDeleteModal() {
-    $('.modal#delete-modal').addClass("is-active");
-}
-
-function hideDeleteModal() {
-    $('.modal#delete-modal').removeClass("is-active");
-}
