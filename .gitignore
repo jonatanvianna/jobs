@@ -2,6 +2,10 @@
 .idea/
 jobs.sublime-workspace
 jobs.sublime-project
+
+# vscode
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
