@@ -9,9 +9,6 @@ unipath = "*"
 
 [dev-packages]
 "flake8" = "*"
-pyflakes = "*"
-codeintel = "*"
-black = "*"
 
 [requires]
 python_version = "3.6"
